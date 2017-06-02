@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Question(models.Model):
     question_text = models.CharField('질문내용', max_length=200)
     pub_date = models.DateTimeField('발행일자')
@@ -10,6 +11,7 @@ class Question(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+
 class Choice(models.Model):
     question = models.ForeignKey(
         Question,
@@ -17,4 +19,4 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
     )
     choice_text = models.CharField('선택내용', max_length=200)
-    votes = models.IntegerField('총 투표수',  default=0)
+    votes = models.IntegerField('총 투표수', default=0)
